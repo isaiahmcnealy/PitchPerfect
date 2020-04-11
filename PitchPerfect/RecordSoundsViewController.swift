@@ -12,7 +12,7 @@ import AVFoundation
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     // MARK: Properties
-    let TAG = "ViewController"
+    let TAG = "RecordSoundViewController"
     
     var audioRecorder: AVAudioRecorder!
     
