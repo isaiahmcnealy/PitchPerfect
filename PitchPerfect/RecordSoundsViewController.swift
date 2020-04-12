@@ -12,8 +12,6 @@ import AVFoundation
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     // MARK: Properties
-    let TAG = "RecordSoundViewController"
-    
     var audioRecorder: AVAudioRecorder!
     
     @IBOutlet weak var recordingLabel: UILabel!
@@ -23,20 +21,17 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(TAG): func viewDidLoad")
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("\(TAG): func willAppear")
         
         stopRecordingButton.isEnabled = false  // start with stopRecordingButton disabled
     }
  
 
     @IBAction func recordAudio(_ sender: Any) {
-        print("\(TAG): func recordAudio")
         
         // disable record button and enable stop button while recording
         stopRecordingButton.isEnabled = true
@@ -59,7 +54,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
 
     @IBAction func stopRecording(_ sender: Any) {
-        print("\(TAG): func stopRecording")
         
         // enable record button and disable stop button while recording
         recordButton.isEnabled = true
@@ -71,7 +65,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-        print("\(TAG): func audioRecorderDidFinishRecording")
         
         if flag {
             performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
@@ -81,7 +74,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("\(TAG): func prepare(for segue...")
         if segue.identifier == "stopRecording" {
             let playSoundsVC = segue.destination as! PlaySoundsViewController
             let recordedAudioUrl = sender as! URL
